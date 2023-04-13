@@ -10,7 +10,7 @@ pipeline {
             steps{
                 script {
 		          
-			  sh "docker build -t yoshithadocker/mydockerrepo:${buildno} ."
+			  sh "docker build -t yoshithadocker/nodejs:${buildno} ."
                      }
                   }
               }
