@@ -18,24 +18,13 @@ pipeline {
 	 stage('push to repo') {
             steps{
                 script {
-			                           withCredentials([usernamePassword(credentialsId: 'yoshithadocker', passwordVariable: 'dockerpassword', usernameVariable: 'yoshithadocker')]) {
-			                              sh 'docker login -u yoshithadocker -p ${dockerpassword}'
-                                    sh "docker push yoshithadocker/nodejs:${buildno}"
+			         withCredentials([usernamePassword(credentialsId: 'yoshithadocker', passwordVariable: 'dockerpassword', usernameVariable: 'yoshithadocker')]) {
+			                 sh 'docker login -u yoshithadocker -p ${dockerpassword}'
+                                         sh "docker push yoshithadocker/nodejs:${buildno}"
                           }
                   }
               }
           }
-	  
-	
-       stage('K8S Deploy') {
-             steps{   
-              script {
-                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                                  sh "kubectl apply -f deployment.yaml"
-                           }
-             }
-            }
-        }
 
      }
 
