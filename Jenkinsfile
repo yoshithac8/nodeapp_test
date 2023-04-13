@@ -24,14 +24,14 @@ pipeline {
                           }
                   }
               }
-          }*/
+          }
 	  
 	
        stage('K8S Deploy') {
              steps{   
               script {
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                                 /* sh "kubectl apply -f ./test/storageClass.ya
+                                 // sh "kubectl apply -f ./test/storageClass.ya
                            }
              }
             }
